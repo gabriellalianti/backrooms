@@ -47,10 +47,9 @@ export function App() {
     }
   }
 
-  if (loading) return <div className="auth-screen"><div className="brand-mark">B</div><h1>Backrooms</h1><p>Checking your access…</p></div>;
+  if (loading) return <div className="auth-screen"><h1>Backrooms</h1><p>Checking your access…</p></div>;
   if (!user) return (
     <div className="auth-screen">
-      <div className="brand-mark">B</div>
       <h1>Backrooms</h1>
       <p>{error ?? "Sign in with a whitelisted Google account."}</p>
       <a className="primary-button auth-button" href="/auth/google">Sign in with Google</a>
@@ -66,7 +65,7 @@ export function App() {
   return (
     <div className="app">
       <header className="site-header">
-        <button className="wordmark" onClick={() => setPage("catalogue")}><span className="brand-mark">B</span><span><strong>Backrooms</strong><small>CREATE sales</small></span></button>
+        <button className="wordmark" onClick={() => setPage("catalogue")}><span><strong>Backrooms</strong><small>CREATE sales</small></span></button>
         <nav aria-label="Main navigation">
           {pages.map((item) => (
             <button key={item.id} className={page === item.id ? "active" : ""} onClick={() => setPage(item.id)}>
