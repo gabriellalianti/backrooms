@@ -1,3 +1,15 @@
+import type { Role } from "../shared/types";
+
+const roleLabels: Record<Role, string> = {
+  viewer: "Viewer",
+  staff: "Sales Subcom",
+  admin: "Admin",
+};
+
+export function formatRole(role: Role): string {
+  return roleLabels[role];
+}
+
 export function formatMoney(cents: number | null): string {
   if (cents === null) return "N/A";
   return new Intl.NumberFormat("en-AU", { style: "currency", currency: "AUD" }).format(cents / 100);

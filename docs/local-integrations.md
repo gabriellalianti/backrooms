@@ -21,11 +21,11 @@ While signed into the sales Google account:
 3. In **Project Settings**, enable **Show "appsscript.json" manifest file in editor**. Replace that file with `apps-script/appsscript.json`. Its Advanced Sheets service lets the bridge use read-only spreadsheet permission.
 4. Under **Project Settings → Script Properties**, add:
 
-   | Property | Value |
-   | --- | --- |
-   | `SPREADSHEET_ID` | The identifier between `/d/` and `/edit` in the Sheet URL |
-   | `SHEET_GID` | The numeric `gid` of the second Sheet tab |
-   | `BACKROOMS_REQUEST_SECRET` | The random secret from step 1 |
+   | Property                   | Value                                                     |
+   | -------------------------- | --------------------------------------------------------- |
+   | `SPREADSHEET_ID`           | The identifier between `/d/` and `/edit` in the Sheet URL |
+   | `SHEET_GID`                | The numeric `gid` of the second Sheet tab                 |
+   | `BACKROOMS_REQUEST_SECRET` | The random secret from step 1                             |
 
 5. Click **Deploy → New deployment → Web app**.
 6. Set **Execute as** to **Me**. Set access to **Anyone** so the local Worker can make a server-to-server request. The HMAC signature is the endpoint's authentication layer.

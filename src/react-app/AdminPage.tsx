@@ -1,7 +1,9 @@
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import type { Role, User } from "../shared/types";
 import { api } from "./api";
-import { formatDateTime } from "./format";
+import { formatDateTime, formatRole } from "./format";
+
+const roles: Role[] = ["viewer", "staff", "admin"];
 
 interface SyncRun {
   kind: string;
@@ -189,7 +191,7 @@ export function AdminPage({ currentUser }: { currentUser: User }) {
         <form className="add-user-form" onSubmit={(event) => void addUser(event)}>
           <label><span>Name</span><input required value={displayName} onChange={(event) => setDisplayName(event.target.value)} placeholder="Alex Smith" /></label>
           <label><span>Google email</span><input required type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="alex@example.com" /></label>
-          <label><span>Role</span><select value={role} onChange={(event) => setRole(event.target.value as Role)}><option value="viewer">Viewer</option><option value="staff">Staff</option><option value="admin">Admin</option></select></label>
+          <label><span>Role</span><select value={role} onChange={(event) => setRole(event.target.value as Role)}>{roles.map((roleOption) => <option key={roleOption} value={roleOption}>{formatRole(roleOption)}</option>)}</select></label>
           <button className="primary-button" type="submit">Add user</button>
         </form>
 
@@ -198,7 +200,7 @@ export function AdminPage({ currentUser }: { currentUser: User }) {
             <div className={`user-row ${user.active ? "" : "user-row--inactive"}`} key={user.email}>
               <div className="avatar" aria-hidden="true">{user.displayName.slice(0, 2).toUpperCase()}</div>
               <div className="user-identity"><strong>{user.displayName}</strong><span>{user.email}</span></div>
-              <select aria-label={`Role for ${user.displayName}`} value={user.role} disabled={user.email === currentUser.email} onChange={(event) => void updateUser(user, { role: event.target.value as Role })}><option value="viewer">Viewer</option><option value="staff">Staff</option><option value="admin">Admin</option></select>
+              <select aria-label={`Role for ${user.displayName}`} value={user.role} disabled={user.email === currentUser.email} onChange={(event) => void updateUser(user, { role: event.target.value as Role })}>{roles.map((roleOption) => <option key={roleOption} value={roleOption}>{formatRole(roleOption)}</option>)}</select>
               <button className="text-button" disabled={user.email === currentUser.email} onClick={() => void updateUser(user, { active: !user.active })}>{user.active ? "Disable" : "Enable"}</button>
             </div>
           ))}

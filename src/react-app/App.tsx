@@ -3,6 +3,7 @@ import type { User } from "../shared/types";
 import { AdminPage } from "./AdminPage";
 import { api, ApiError } from "./api";
 import { CataloguePage } from "./CataloguePage";
+import { formatRole } from "./format";
 import { OrdersPage } from "./OrdersPage";
 
 type Page = "catalogue" | "orders" | "admin";
@@ -74,7 +75,7 @@ export function App() {
           ))}
         </nav>
         <div className="signed-in">
-          <div className="signed-in__identity"><span>{user.displayName}</span><small>{user.role}</small></div>
+          <div className="signed-in__identity"><span>{user.displayName}</span><small>{formatRole(user.role)}</small></div>
           {!fixtureMode && <button className="sign-out-button" onClick={() => void logout()}>Sign out</button>}
         </div>
       </header>
