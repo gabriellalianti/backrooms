@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "backrooms",
+  "compatibility_date": "2026-09-14",
+  "main": "./src/worker/index.ts",
+  "assets": {
+    "not_found_handling": "single-page-application"
+  },
+  "vars": {
+    "APP_MODE": "production",
+    "APP_ORIGIN": "https://backrooms.your-account.workers.dev"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "backrooms",
+      "database_id": "replace-with-production-database-id",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "backrooms",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler deploy --config wrangler.production.jsonc",
+    "test": "vitest run --config vitest.config.ts",
+    "test:watch": "vitest --config vitest.config.ts",
+    "typecheck": "tsc -b",
+    "db:migrate:local": "wrangler d1 migrations apply backrooms --local",
+    "db:seed:local": "wrangler d1 execute backrooms --local --file=fixtures/seed.sql",
+    "db:migrate:production": "wrangler d1 migrations apply backrooms --remote --config wrangler.production.jsonc",
+    "db:setup": "npm run db:migrate:local && npm run db:seed:local"
+  },
+  "dependencies": {
+    "hono": "^4.9.9",
+    "jose": "^6.1.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "zod": "^4.1.8"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.54.9",
+    "@cloudflare/workers-types": "^5.20260911.1",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.5",
+    "vitest": "^5.0.0",
+    "wrangler": "^4.131.2"
+  }
+}
